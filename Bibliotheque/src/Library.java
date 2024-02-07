@@ -113,11 +113,10 @@ void Library(){
             }
         }
         students1.name=Name;
-        System.out.println("Enter your identify: ");
-        students1.id=sc.nextInt();
         System.out.println("Enter your Address: ");
         students1.adress=sc.nextLine();
-
+        System.out.println("Enter your identify: ");
+        students1.id=sc.nextInt();
         students.add(students1);
         System.out.println("The student has been added successfully.");
     }
@@ -127,8 +126,8 @@ void Library(){
         }else {
             for (Students std1: students){
                 System.out.println("Name : "+std1.name);
-                System.out.println("Name : "+std1.adress);
-                System.out.println("Name : "+std1.id);
+                System.out.println("Address : "+std1.adress);
+                System.out.println("ID : "+std1.id);
 
             }
         }
@@ -140,10 +139,10 @@ void Library(){
         String nameSearch=scanner.nextLine();
         for (Students std: students){
             if (std.name.equals(nameSearch)){
-                System.out.println("The Student Found");
+                System.out.println("Student Found");
                 System.out.println("Name : "+std.name);
-                System.out.println("Name : "+std.adress);
-                System.out.println("Name : "+std.id);
+                System.out.println("Address : "+std.adress);
+                System.out.println("ID : "+std.id);
             }else {
                 System.out.println("The Student Not Found");
             }
@@ -158,7 +157,7 @@ void Library(){
             if (std.name.equals(nameDeleted)){
                 students.remove(std);
                 System.out.println("The student has been deleted successfully.");
-                
+
             }
         }
 
