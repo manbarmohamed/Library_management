@@ -91,11 +91,12 @@ void Library(){
         }
     }
     void DeleteBook(){
+        Books bk=new Books();
         System.out.println("Enter the book title will delete: ");
         String Title=new Scanner(System.in).nextLine();
-        for(Books books1: books){
-            if(books1.title.equals(Title)){
-                books.remove(books1);
+        for(int i=0;i<books.size();i++){
+            if(books.get(i).title.equals(Title)){
+                books.remove(i);
                 System.out.println("The book has been deleted successfully.");
             }
         }
@@ -150,16 +151,22 @@ void Library(){
 
     }
     void DeleteStudent(){
-        Scanner scanner=new Scanner(System.in);
+    Students std=new Students();
         System.out.println("Enter the name of the student to search: ");
-        String nameDeleted=scanner.nextLine();
-        for (Students std: students){
-            if (std.name.equals(nameDeleted)){
-                students.remove(std);
-                System.out.println("The student has been deleted successfully.");
-
+        String nameDeleted=new Scanner(System.in).nextLine();
+        for(int i=0;i<students.size();i++){
+            if(students.get(i).name.equals(nameDeleted)){
+                students.remove(i);
+                System.out.println("The Student has been deleted successfully.");
             }
         }
+//        for (Students std1: students){
+//            if (std1.name.equals(nameDeleted)){
+//                students.remove(std1);
+//                System.out.println("The student has been deleted successfully.");
+//
+//            }
+//        }
 
     }
 }

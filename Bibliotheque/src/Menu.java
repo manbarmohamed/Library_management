@@ -43,7 +43,7 @@ public class Menu {
         do {
             String red = "\u001B[31m";
             String reset = "\u001B[0m";
-            System.out.println(red+"|---------------------------------------------|");
+            System.out.println(red+"|-----------------------------------------------|");
             System.out.println("|             Books management                    |");
             System.out.println("|-------------------------------------------------|");
             System.out.println("|              1-- Add Book                       |");
@@ -84,7 +84,7 @@ public class Menu {
                 default:
                     System.out.println("Invalid Choice!");
             }
-        } while (choice != 6);
+        } while (choice != 7);
 
     }
     public void InterFaceStudent() {
@@ -136,7 +136,7 @@ public class Menu {
                 default:
                     System.out.println("Invalid Choice!");
             }
-        } while (choice != 6);
+        } while (choice != 7);
 
     }
 }
