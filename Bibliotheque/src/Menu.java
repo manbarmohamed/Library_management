@@ -6,7 +6,9 @@ public class Menu {
         int choice;
         Scanner sc=new Scanner(System.in);
         do {
-            System.out.println("|-----------------------------------------|");
+            String red = "\u001B[31m";
+            String reset = "\u001B[0m";
+            System.out.println(red+"|-----------------------------------------|");
             System.out.println("|             library management          |");
             System.out.println("|-----------------------------------------|");
             System.out.println("|              1-- Add Book               |");
@@ -17,7 +19,7 @@ public class Menu {
             System.out.println("|              6-- Add Student            |");
             System.out.println("|              7-- Quitter                |");
             System.out.println("|-----------------------------------------|");
-            System.out.println("|-----------------------------------------|");
+            System.out.println("|-----------------------------------------|"+reset);
 
             System.out.print("Enter the Choice : ");
             choice = sc.nextInt();
@@ -28,6 +30,9 @@ public class Menu {
                     break;
                 case 2:
                     lb.DisplayBook();
+                    break;
+                case 3:
+                    lb.DeleteBook();
                     break;
                 case 5:
                     lb.SearchBook();

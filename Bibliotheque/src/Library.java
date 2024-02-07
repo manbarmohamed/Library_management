@@ -64,7 +64,7 @@ void Library(){
                 System.out.println("ISBN: " + book.ISBN);
                 System.out.println("Publication Date: " + book.pub_date);
                 System.out.println("Is Booked: " + book.isbooked);
-                System.out.println();
+                //System.out.println();
             }
         }
 
@@ -89,5 +89,78 @@ void Library(){
                 System.out.println("Book not found");
             }
         }
+    }
+    void DeleteBook(){
+        System.out.println("Enter the book title will delete: ");
+        String Title=new Scanner(System.in).nextLine();
+        for(Books books1: books){
+            if(books1.title.equals(Title)){
+                books.remove(books1);
+                System.out.println("The book has been deleted successfully.");
+            }
+        }
+
+    }
+    void AddStudents(){
+        Scanner sc=new Scanner(System.in);
+        Students students1=new Students();
+        System.out.println("Enter your name: ");
+        String Name=sc.nextLine();
+        for (Students std: students){
+            if (std.name.equals(Name)){
+                System.out.println("The student already exists.");
+                return;
+            }
+        }
+        students1.name=Name;
+        System.out.println("Enter your identify: ");
+        students1.id=sc.nextInt();
+        System.out.println("Enter your Address: ");
+        students1.adress=sc.nextLine();
+
+        students.add(students1);
+        System.out.println("The student has been added successfully.");
+    }
+    void DisplayStudent(){
+        if (students.isEmpty()){
+            System.out.println("The list of student is empty. No student to display.");
+        }else {
+            for (Students std1: students){
+                System.out.println("Name : "+std1.name);
+                System.out.println("Name : "+std1.adress);
+                System.out.println("Name : "+std1.id);
+
+            }
+        }
+
+    }
+    void SearchStudent(){
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Enter the name of the student to search: ");
+        String nameSearch=scanner.nextLine();
+        for (Students std: students){
+            if (std.name.equals(nameSearch)){
+                System.out.println("The Student Found");
+                System.out.println("Name : "+std.name);
+                System.out.println("Name : "+std.adress);
+                System.out.println("Name : "+std.id);
+            }else {
+                System.out.println("The Student Not Found");
+            }
+        }
+
+    }
+    void DeleteStudent(){
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Enter the name of the student to search: ");
+        String nameDeleted=scanner.nextLine();
+        for (Students std: students){
+            if (std.name.equals(nameDeleted)){
+                students.remove(std);
+                System.out.println("The student has been deleted successfully.");
+                
+            }
+        }
+
     }
 }
