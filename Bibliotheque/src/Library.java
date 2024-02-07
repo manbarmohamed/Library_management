@@ -17,9 +17,12 @@ void Library(){
         Books book = new Books();
         System.out.println("Enter title of book: ");
         String title=scanner.nextLine();
-        if (book.title.equalsIgnoreCase(title)){
-            System.out.println("the book already exists");
-        }else {
+        for (Books exist : books){
+            if (exist.title.equalsIgnoreCase(title)){
+                System.out.println("the book already exists");
+                return;
+            }
+        }
             book.title = title;
             System.out.println("Enter the author of book: ");
             book.author = scanner.nextLine();
@@ -28,11 +31,16 @@ void Library(){
             System.out.println("Enter publication date of book: ");
             book.pub_date = scanner.nextLine();
             Students student = new Students();
-            System.out.println("Is the book booked? (true/false):");
-            book.isbooked = scanner.nextBoolean();
+            try {
+                System.out.println("Is the book booked? (true/false):");
+                book.isbooked = scanner.nextBoolean();
+            }catch (Exception e){
+                System.out.println(e);
+            }
+
             books.add(book);
             System.out.println("The book has been added successfully.");
-        }
+
     }
     void DisplayBook(){
 
@@ -62,12 +70,12 @@ void Library(){
 
 
     }
-    void Search(){
+    void SearchBook(){
         Scanner scanner=new Scanner(System.in);
         System.out.println("Enter the title of the book to search: ");
-        String titelSearch=scanner.nextLine();
+        String titleSearch=scanner.nextLine();
         for (Books books1: books){
-            if (books1.title.equals(titelSearch)){
+            if (books1.title.equals(titleSearch)){
                 System.out.println("Book found. ");
                 System.out.println("Title: " + books1.title);
                 System.out.println("Author: " + books1.author);
