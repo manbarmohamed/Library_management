@@ -28,19 +28,10 @@ void Library(){
             book.author = scanner.nextLine();
             System.out.println("Enter the ISBN of book: ");
             book.ISBN = scanner.nextLine();
-            System.out.println("Enter publication date of book: ");
+            System.out.println("Enter publication date of book:(DD/MM/YYY):  ");
             book.pub_date = scanner.nextLine();
-            Students student = new Students();
-            try {
-                System.out.println("Is the book booked? (true/false):");
-                book.isbooked = scanner.nextBoolean();
-            }catch (Exception e){
-                System.out.println(e);
-            }
-
             books.add(book);
             System.out.println("The book has been added successfully.");
-
     }
     void DisplayBook(){
 
@@ -167,6 +158,75 @@ void Library(){
 //
 //            }
 //        }
+
+    }
+
+    void  ReserveBook(){
+        Books bk = new Books();
+        Students st = new Students();
+        System.out.println("Enter your name: ");
+        String Name =new Scanner(System.in).nextLine();
+        for(Students std1: students){
+            if (std1.name.equals(Name)){
+                System.out.println("Enter the title of the book you want to reserve: ");
+                String title =new Scanner(System.in).nextLine();
+                for (Books bk1 : books){
+                    if(bk1.title.equals(title)){
+                        if(bk1.isbooked==false) {
+                            bk1.isbooked = true;
+                            System.out.println("THE BOOK " + title + " IS RESERVED BY " + Name);
+                        }else{
+                            System.out.println("The book already reserved! ");
+                        }
+                    }
+                }
+
+            }
+        }
+
+//            Scanner scanner = new Scanner(System.in);
+//            System.out.println("Enter your name: ");
+//            String studentName = scanner.nextLine();
+//
+//
+//            Students student = null;
+//            for (Students std : students) {
+//                if (std.name.equalsIgnoreCase(studentName)) {
+//                    student = std;
+//                    break;
+//                }
+//            }
+//
+//            if (student == null) {
+//                System.out.println("Student not found.");
+//                return;
+//            }
+//
+//            System.out.println("Enter the title of the book you want to reserve: ");
+//            String bookTitle = scanner.nextLine();
+//
+//            Books bookToReserve = null;
+//            for (Books book : books) {
+//                if (book.title.equalsIgnoreCase(bookTitle)) {
+//                    bookToReserve = book;
+//                    break;
+//                }
+//            }
+//
+//            if (bookToReserve == null) {
+//                System.out.println("Book not found.");
+//                return;
+//            }
+//
+//            // Check if the book is already reserved
+//            if (bookToReserve.isbooked) {
+//                System.out.println("The book is already reserved.");
+//            } else {
+//                // Reserve the book
+//                bookToReserve.isbooked=true;
+//                System.out.println("The book '" + bookToReserve.title + "' is reserved by " + student.name);
+//            }
+//
 
     }
 }

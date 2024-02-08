@@ -1,10 +1,11 @@
 import java.util.Scanner;
 
 public class Menu {
+    Library lb = new Library();
+
     void MainInterFace(){
         int choice1;
         Scanner sc=new Scanner(System.in);
-        Menu menu=new Menu();
         do {
             String red = "\u001B[31m";
             String reset = "\u001B[0m";
@@ -22,10 +23,10 @@ public class Menu {
 
             switch (choice1) {
                 case 1:
-                    menu.InterFaceBook();
+                    InterFaceBook();
                     break;
                 case 2:
-                    menu.InterFaceStudent();
+                    InterFaceStudent();
                     break;
                 case 3:
                     System.out.println("Coming soon!!!");
@@ -36,14 +37,12 @@ public class Menu {
         } while (choice1 !=4);
     }
     public void InterFaceBook() {
-        Library lb = new Library();
-        Menu menu=new Menu();
         int choice;
         Scanner sc=new Scanner(System.in);
         do {
             String red = "\u001B[31m";
             String reset = "\u001B[0m";
-            System.out.println(red+"|-----------------------------------------------|");
+            System.out.println(red+"|-------------------------------------------------|");
             System.out.println("|             Books management                    |");
             System.out.println("|-------------------------------------------------|");
             System.out.println("|              1-- Add Book                       |");
@@ -70,13 +69,29 @@ public class Menu {
                     lb.DeleteBook();
                     break;
                 case 4:
-                    System.out.println("Coming soon!!!");
+                    if (lb.books.isEmpty()) {
+                        System.out.println("The library is empty. No books to display.");
+                    } else {
+                        Scanner scanner = new Scanner(System.in);
+                        System.out.print("Enter the book title to modify: ");
+                        String title = scanner.nextLine();
+                        boolean found = false;
+                        for (Books book : lb.books) {
+                            if (book.title.equalsIgnoreCase(title)) {
+                                book.UpdateBook();
+                                found = true;
+                            }
+                        }
+                        if (!found) {
+                            System.out.println("Book not found");
+                        }
+                    }
                     break;
                 case 5:
                     lb.SearchBook();
                     break;
                 case 6:
-                    menu.MainInterFace();
+                    MainInterFace();
                     break;
                 case 7:
                     System.out.println("End Programme!");
@@ -88,8 +103,6 @@ public class Menu {
 
     }
     public void InterFaceStudent() {
-        Library lb = new Library();
-        Menu menu=new Menu();
         int choice;
         Scanner sc=new Scanner(System.in);
         do {
@@ -128,15 +141,15 @@ public class Menu {
                     lb.SearchStudent();
                     break;
                 case 6:
-                    menu.MainInterFace();
+                    MainInterFace();
                     break;
                 case 7:
-                    System.out.println("End Programme!");
+                    lb.ReserveBook();
                     break;
                 default:
                     System.out.println("Invalid Choice!");
             }
-        } while (choice != 7);
+        } while (choice != 8);
 
     }
 }
