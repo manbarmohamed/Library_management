@@ -9,14 +9,14 @@ public class Menu {
         do {
             String red = "\u001B[31m";
             String reset = "\u001B[0m";
-            System.out.println(red+"|-----------------------------------------|");
+            System.out.println(red+"|+---------------------------------------+|");
             System.out.println("|             Library management          |");
-            System.out.println("|-----------------------------------------|");
+            System.out.println("|+---------------------------------------+|");
             System.out.println("|              1-- BOOKS ACCESS           |");
             System.out.println("|              2-- STUDENTS ACCESS        |");
             System.out.println("|              3-- Reserve books          |");
-            System.out.println("|-----------------------------------------|");
-            System.out.println("|-----------------------------------------|"+reset);
+            System.out.println("|+---------------------------------------+|");
+            System.out.println("|+---------------------------------------+|"+reset);
 
             System.out.print("Enter the Choice : ");
             choice1 = sc.nextInt();
@@ -29,7 +29,10 @@ public class Menu {
                     InterFaceStudent();
                     break;
                 case 3:
-                    System.out.println("Coming soon!!!");
+                    lb.ReserveBook();
+                    break;
+                case 4:
+                    System.out.println("End Programme!!!");
                     break;
                 default:
                     System.out.println("Invalid Choice!");
@@ -42,9 +45,9 @@ public class Menu {
         do {
             String red = "\u001B[31m";
             String reset = "\u001B[0m";
-            System.out.println(red+"|-------------------------------------------------|");
+            System.out.println(red+"|+-----------------------------------------------+|");
             System.out.println("|             Books management                    |");
-            System.out.println("|-------------------------------------------------|");
+            System.out.println("|+-----------------------------------------------+|");
             System.out.println("|              1-- Add Book                       |");
             System.out.println("|              2-- Display Books                  |");
             System.out.println("|              3-- Delete Book                    |");
@@ -52,8 +55,8 @@ public class Menu {
             System.out.println("|              5-- Search to Book                 |");
             System.out.println("|              6-- return to the Main interface   |");
             System.out.println("|              7-- Quitter                        |");
-            System.out.println("|-------------------------------------------------|");
-            System.out.println("|-------------------------------------------------|"+reset);
+            System.out.println("|+-----------------------------------------------+|");
+            System.out.println("|+-----------------------------------------------+|"+reset);
 
             System.out.print("Enter the Choice : ");
             choice = sc.nextInt();
@@ -69,23 +72,7 @@ public class Menu {
                     lb.DeleteBook();
                     break;
                 case 4:
-                    if (lb.books.isEmpty()) {
-                        System.out.println("The library is empty. No books to display.");
-                    } else {
-                        Scanner scanner = new Scanner(System.in);
-                        System.out.print("Enter the book title to modify: ");
-                        String title = scanner.nextLine();
-                        boolean found = false;
-                        for (Books book : lb.books) {
-                            if (book.title.equalsIgnoreCase(title)) {
-                                book.UpdateBook();
-                                found = true;
-                            }
-                        }
-                        if (!found) {
-                            System.out.println("Book not found");
-                        }
-                    }
+                    lb.UpdateBook();
                     break;
                 case 5:
                     lb.SearchBook();
@@ -108,9 +95,9 @@ public class Menu {
         do {
             String red = "\u001B[31m";
             String reset = "\u001B[0m";
-            System.out.println(red+"|---------------------------------------------------|");
+            System.out.println(red+"|+-------------------------------------------------+|");
             System.out.println("|             Students management                   |");
-            System.out.println("|---------------------------------------------------|");
+            System.out.println("|+-------------------------------------------------+|");
             System.out.println("|              1-- Add Student                      |");
             System.out.println("|              2-- Display Students                 |");
             System.out.println("|              3-- Delete Student                   |");
@@ -118,8 +105,8 @@ public class Menu {
             System.out.println("|              5-- Search to Student                |");
             System.out.println("|              6-- return to the Main interface     |");
             System.out.println("|              7-- Quitter                          |");
-            System.out.println("|---------------------------------------------------|");
-            System.out.println("|---------------------------------------------------|"+reset);
+            System.out.println("|+-------------------------------------------------+|");
+            System.out.println("|+-------------------------------------------------+|"+reset);
 
             System.out.print("Enter the Choice : ");
             choice = sc.nextInt();
@@ -135,21 +122,28 @@ public class Menu {
                     lb.DeleteStudent();
                     break;
                 case 4:
-                    System.out.println("Coming soon!!!");
+                    lb.UpdateStudent();
                     break;
                 case 5:
-                    lb.SearchStudent();
+                    System.out.println("Enter the name of the student to search: ");
+                    String nameSearch=new Scanner(System.in).nextLine();
+
+                    if (lb.SearchStudent(nameSearch)!= null){
+                        System.out.println("Name : "+lb.SearchStudent(nameSearch).name);
+                        System.out.println("Address : "+lb.SearchStudent(nameSearch).adress);
+                        System.out.println("ID : "+lb.SearchStudent(nameSearch).id);
+                    }
                     break;
                 case 6:
                     MainInterFace();
                     break;
                 case 7:
-                    lb.ReserveBook();
+                    System.out.println("End Programme!");
                     break;
                 default:
                     System.out.println("Invalid Choice!");
             }
-        } while (choice != 8);
+        } while (choice != 7);
 
     }
 }

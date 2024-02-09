@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Books {
@@ -5,7 +6,8 @@ public class Books {
         String author;
         String ISBN;
         String pub_date;
-        Students std=new Students();
+        Students std = new Students();
+
         boolean isbooked;
 
 //        void Books(String title,String author,String ISBN,String pub_date,Students std,Boolean isbooked){

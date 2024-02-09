@@ -55,6 +55,8 @@ void Library(){
                 System.out.println("ISBN: " + book.ISBN);
                 System.out.println("Publication Date: " + book.pub_date);
                 System.out.println("Is Booked: " + book.isbooked);
+                System.out.println("Name: " + book.std.name);
+
                 //System.out.println();
             }
         }
@@ -93,6 +95,25 @@ void Library(){
         }
 
     }
+    void UpdateBook(){
+        if (books.isEmpty()) {
+            System.out.println("The library is empty. No books to display.");
+        } else {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter the book title to modify: ");
+            String title = scanner.nextLine();
+            boolean found = false;
+            for (Books book : books) {
+                if (book.title.equalsIgnoreCase(title)) {
+                    book.UpdateBook();
+                    found = true;
+                }
+            }
+            if (!found) {
+                System.out.println("Book not found");
+            }
+        }
+    }
     void AddStudents(){
         Scanner sc=new Scanner(System.in);
         Students students1=new Students();
@@ -120,26 +141,31 @@ void Library(){
                 System.out.println("Name : "+std1.name);
                 System.out.println("Address : "+std1.adress);
                 System.out.println("ID : "+std1.id);
+                System.out.println("Book : "+std1.book.get(0).title);
+
 
             }
         }
 
     }
-    void SearchStudent(){
-        Scanner scanner=new Scanner(System.in);
-        System.out.println("Enter the name of the student to search: ");
-        String nameSearch=scanner.nextLine();
+    public Students SearchStudent(String name){
+//        Scanner scanner=new Scanner(System.in);
+//        System.out.println("Enter the name of the student to search: ");
+//        String nameSearch=scanner.nextLine();
         for (Students std: students){
-            if (std.name.equals(nameSearch)){
-                System.out.println("Student Found");
-                System.out.println("Name : "+std.name);
-                System.out.println("Address : "+std.adress);
-                System.out.println("ID : "+std.id);
+            if (std.name.equals(name)){
+//                System.out.println("Student Found");
+//                System.out.println("Name : "+std.name);
+//                System.out.println("Address : "+std.adress);
+//                System.out.println("ID : "+std.id);
+                return std;
+
             }else {
                 System.out.println("The Student Not Found");
             }
         }
 
+        return null;
     }
     void DeleteStudent(){
     Students std=new Students();
@@ -160,6 +186,25 @@ void Library(){
 //        }
 
     }
+    void UpdateStudent(){
+        if (students.isEmpty()) {
+            System.out.println("The list of student is empty. No student to display..");
+        } else {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter the Student Name to modify: ");
+            String name = scanner.nextLine();
+            boolean found = false;
+            for (Students std : students) {
+                if (std.name.equalsIgnoreCase(name)) {
+                    std.UpdateBook();
+                    found = true;
+                }
+            }
+            if (!found) {
+                System.out.println("Student not found");
+            }
+        }
+    }
 
     void  ReserveBook(){
         Books bk = new Books();
@@ -175,13 +220,25 @@ void Library(){
                         if(bk1.isbooked==false) {
                             bk1.isbooked = true;
                             System.out.println("THE BOOK " + title + " IS RESERVED BY " + Name);
+                            std1.book.add(bk1);
+                            Students std = SearchStudent(st.name);
+                            if (std!=null){
+                                bk1.std.name= std.name;
+                                bk1.std.adress= std.adress;
+                                bk1.std.id= std.id;
+                            }
                         }else{
                             System.out.println("The book already reserved! ");
                         }
                     }
+
                 }
 
+
             }
+
+
+
         }
 
 //            Scanner scanner = new Scanner(System.in);
@@ -227,6 +284,19 @@ void Library(){
 //                System.out.println("The book '" + bookToReserve.title + "' is reserved by " + student.name);
 //            }
 //
+
+    }
+    void FilterBookReserved(){
+//        Books bk = new Books();
+        for (Books bk: books) {
+            if (bk.isbooked) {
+                System.out.println("Title: " + bk.title);
+                System.out.println("Author: " + bk.author);
+                System.out.println("ISBN: " + bk.ISBN);
+                System.out.println("Publication Date: " + bk.pub_date);
+                System.out.println("Is Booked: " + bk.isbooked);
+            }
+        }
 
     }
 }
