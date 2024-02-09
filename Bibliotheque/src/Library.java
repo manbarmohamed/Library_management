@@ -1,5 +1,8 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
+
 
 public class Library {
     ArrayList<Books> books = new ArrayList<Books>();
@@ -13,6 +16,7 @@ void Library(){
 
     void AddBook(){
         //Add Books
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         Scanner scanner = new Scanner(System.in);
         Books book = new Books();
         System.out.println("Enter title of book: ");
@@ -28,8 +32,15 @@ void Library(){
             book.author = scanner.nextLine();
             System.out.println("Enter the ISBN of book: ");
             book.ISBN = scanner.nextLine();
-            System.out.println("Enter publication date of book:(DD/MM/YYY):  ");
-            book.pub_date = scanner.nextLine();
+            System.out.println("Enter publication date of book (DD/MM/YYYY): ");
+            String pubDateString = scanner.nextLine();
+            try {
+                LocalDate pubDate = LocalDate.parse(pubDateString, formatter);
+                book.pub_date = pubDate;
+            } catch (Exception e) {
+                System.out.println("Invalid date format. Please use DD/MM/YYYY.");
+                return;
+            }
             books.add(book);
             System.out.println("The book has been added successfully.");
     }
@@ -56,7 +67,6 @@ void Library(){
                 System.out.println("Publication Date: " + book.pub_date);
                 System.out.println("Is Booked: " + book.isbooked);
                 System.out.println("Name: " + book.std.name);
-
                 //System.out.println();
             }
         }
@@ -207,8 +217,8 @@ void Library(){
     }
 
     void  ReserveBook(){
-        Books bk = new Books();
-        Students st = new Students();
+//        Books bk = new Books();
+//        Students st = new Students();
         System.out.println("Enter your name: ");
         String Name =new Scanner(System.in).nextLine();
         for(Students std1: students){
@@ -221,7 +231,7 @@ void Library(){
                             bk1.isbooked = true;
                             System.out.println("THE BOOK " + title + " IS RESERVED BY " + Name);
                             std1.book.add(bk1);
-                            Students std = SearchStudent(st.name);
+                            Students std = SearchStudent(std1.name);
                             if (std!=null){
                                 bk1.std.name= std.name;
                                 bk1.std.adress= std.adress;
@@ -231,16 +241,9 @@ void Library(){
                             System.out.println("The book already reserved! ");
                         }
                     }
-
                 }
-
-
             }
-
-
-
         }
-
 //            Scanner scanner = new Scanner(System.in);
 //            System.out.println("Enter your name: ");
 //            String studentName = scanner.nextLine();
@@ -284,7 +287,6 @@ void Library(){
 //                System.out.println("The book '" + bookToReserve.title + "' is reserved by " + student.name);
 //            }
 //
-
     }
     void FilterBookReserved(){
 //        Books bk = new Books();

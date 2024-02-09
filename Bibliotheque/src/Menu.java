@@ -7,7 +7,7 @@ public class Menu {
         int choice1;
         Scanner sc=new Scanner(System.in);
         do {
-            String red = "\u001B[31m";
+            String red = "\u001B[32m";
             String reset = "\u001B[0m";
             System.out.println(red+"|+---------------------------------------+|");
             System.out.println("|             Library management          |");
@@ -29,7 +29,7 @@ public class Menu {
                     InterFaceStudent();
                     break;
                 case 3:
-                    lb.ReserveBook();
+                    ReserveInterFace();
                     break;
                 case 4:
                     System.out.println("End Programme!!!");
@@ -38,6 +38,39 @@ public class Menu {
                     System.out.println("Invalid Choice!");
             }
         } while (choice1 !=4);
+    }
+    void ReserveInterFace(){
+        int choice1;
+        Scanner sc=new Scanner(System.in);
+        do {
+            String red = "\u001B[31m";
+            String reset = "\u001B[0m";
+            System.out.println(red+"|+---------------------------------------+|");
+            System.out.println("|             Reserve management          |");
+            System.out.println("|+---------------------------------------+|");
+            System.out.println("|              1-- reserve book           |");
+            System.out.println("|              2-- Filter book            |");
+            System.out.println("|              3-- Quitter                |");
+            System.out.println("|+---------------------------------------+|");
+            System.out.println("|+---------------------------------------+|"+reset);
+
+            System.out.print("Enter the Choice : ");
+            choice1 = sc.nextInt();
+
+            switch (choice1) {
+                case 1:
+                    lb.ReserveBook();
+                    break;
+                case 2:
+                    lb.FilterBookReserved();
+                    break;
+                case 3:
+                    System.out.println("End Programme!!!");
+                    break;
+                default:
+                    System.out.println("Invalid Choice!");
+            }
+        } while (choice1 !=3);
     }
     public void InterFaceBook() {
         int choice;
