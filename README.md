@@ -48,8 +48,8 @@ L'école ENAA Béni Mellal a sollicité vos compétences en tant que développeu
 ## Comment exécuter l'application
 
 1. Assurez-vous d'avoir une version récente de Java installée.
-2. Clonez ce dépôt : `git clone https://github.com/votre-utilisateur/nom-du-depot.git`
-3. Naviguez vers le répertoire du projet : `cd nom-du-depot`
+2. Clonez ce dépôt : `https://github.com/manbarmohamed/Brief_1.git`
+3. Naviguez vers le répertoire du projet : `cd Brief_1`
 4. Compilez le code : `javac Main.java`
 5. Exécutez l'application : `java Main`
 
