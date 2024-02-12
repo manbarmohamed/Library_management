@@ -57,6 +57,12 @@ L'école ENAA Béni Mellal a sollicité vos compétences en tant que développeu
 
 Les contributions sous forme de suggestions d'amélioration, signalement de bugs ou de nouvelles fonctionnalités sont les bienvenues. Merci de contribuer à rendre cette application encore meilleure!
 
+## Auteurs
+Ce projet a été développé par [Manbar Mohamed], sous la supervision de l'école ENAA Béni Mellal.
+
+## Contact
+Pour toute question ou commentaire, veuillez contacter [manbar.mohammed@gmail.com] ou [+212 6 90 47 25 90].
+
 ---
 
 *Note : Assurez-vous d'avoir une version récente de Java installée pour exécuter cette application console.*
