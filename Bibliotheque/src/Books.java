@@ -11,6 +11,7 @@ public class Books {
         String ISBN;
         LocalDate pub_date;
         Students std = new Students();
+        LocalDate reservationDate;
 
         boolean isbooked;
 

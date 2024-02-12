@@ -7,16 +7,15 @@ public class Menu {
         int choice1;
         Scanner sc=new Scanner(System.in);
         do {
-            String red = "\u001B[32m";
-            String reset = "\u001B[0m";
-            System.out.println(red+"|+---------------------------------------+|");
+            
+            System.out.println("|+---------------------------------------+|");
             System.out.println("|             Library management          |");
             System.out.println("|+---------------------------------------+|");
             System.out.println("|              1-- BOOKS ACCESS           |");
             System.out.println("|              2-- STUDENTS ACCESS        |");
             System.out.println("|              3-- Reserve books          |");
             System.out.println("|+---------------------------------------+|");
-            System.out.println("|+---------------------------------------+|"+reset);
+            System.out.println("|+---------------------------------------+|");
 
             System.out.print("Enter the Choice : ");
             choice1 = sc.nextInt();
@@ -43,16 +42,15 @@ public class Menu {
         int choice1;
         Scanner sc=new Scanner(System.in);
         do {
-            String red = "\u001B[31m";
-            String reset = "\u001B[0m";
-            System.out.println(red+"|+---------------------------------------+|");
+
+            System.out.println("|+---------------------------------------+|");
             System.out.println("|             Reserve management          |");
             System.out.println("|+---------------------------------------+|");
             System.out.println("|              1-- reserve book           |");
             System.out.println("|              2-- Filter book            |");
             System.out.println("|              3-- Quitter                |");
             System.out.println("|+---------------------------------------+|");
-            System.out.println("|+---------------------------------------+|"+reset);
+            System.out.println("|+---------------------------------------+|");
 
             System.out.print("Enter the Choice : ");
             choice1 = sc.nextInt();
@@ -76,9 +74,8 @@ public class Menu {
         int choice;
         Scanner sc=new Scanner(System.in);
         do {
-            String red = "\u001B[31m";
-            String reset = "\u001B[0m";
-            System.out.println(red+"|+-----------------------------------------------+|");
+
+            System.out.println("|+-----------------------------------------------+|");
             System.out.println("|             Books management                    |");
             System.out.println("|+-----------------------------------------------+|");
             System.out.println("|              1-- Add Book                       |");
@@ -89,7 +86,7 @@ public class Menu {
             System.out.println("|              6-- return to the Main interface   |");
             System.out.println("|              7-- Quitter                        |");
             System.out.println("|+-----------------------------------------------+|");
-            System.out.println("|+-----------------------------------------------+|"+reset);
+            System.out.println("|+-----------------------------------------------+|");
 
             System.out.print("Enter the Choice : ");
             choice = sc.nextInt();
@@ -126,9 +123,8 @@ public class Menu {
         int choice;
         Scanner sc=new Scanner(System.in);
         do {
-            String red = "\u001B[31m";
-            String reset = "\u001B[0m";
-            System.out.println(red+"|+-------------------------------------------------+|");
+
+            System.out.println("|+-------------------------------------------------+|");
             System.out.println("|             Students management                   |");
             System.out.println("|+-------------------------------------------------+|");
             System.out.println("|              1-- Add Student                      |");
@@ -139,7 +135,7 @@ public class Menu {
             System.out.println("|              6-- return to the Main interface     |");
             System.out.println("|              7-- Quitter                          |");
             System.out.println("|+-------------------------------------------------+|");
-            System.out.println("|+-------------------------------------------------+|"+reset);
+            System.out.println("|+-------------------------------------------------+|");
 
             System.out.print("Enter the Choice : ");
             choice = sc.nextInt();

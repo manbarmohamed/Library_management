@@ -8,10 +8,10 @@ public class Library {
     ArrayList<Books> books = new ArrayList<Books>();
     ArrayList<Students> students = new ArrayList<Students>();
 
-void Library(){
-    this.books=new ArrayList<>();
-    this.students=new ArrayList<>();
-}
+    void Library(){
+        this.books=new ArrayList<>();
+        this.students=new ArrayList<>();
+    }
 
 
     void AddBook(){
@@ -27,22 +27,22 @@ void Library(){
                 return;
             }
         }
-            book.title = title;
-            System.out.println("Enter the author of book: ");
-            book.author = scanner.nextLine();
-            System.out.println("Enter the ISBN of book: ");
-            book.ISBN = scanner.nextLine();
-            System.out.println("Enter publication date of book (DD/MM/YYYY): ");
-            String pubDateString = scanner.nextLine();
-            try {
-                LocalDate pubDate = LocalDate.parse(pubDateString, formatter);
-                book.pub_date = pubDate;
-            } catch (Exception e) {
-                System.out.println("Invalid date format. Please use DD/MM/YYYY.");
-                return;
-            }
-            books.add(book);
-            System.out.println("The book has been added successfully.");
+        book.title = title;
+        System.out.println("Enter the author of book: ");
+        book.author = scanner.nextLine();
+        System.out.println("Enter the ISBN of book: ");
+        book.ISBN = scanner.nextLine();
+        System.out.println("Enter publication date of book (DD/MM/YYYY): ");
+        String pubDateString = scanner.nextLine();
+        try {
+            LocalDate pubDate = LocalDate.parse(pubDateString, formatter);
+            book.pub_date = pubDate;
+        } catch (Exception e) {
+            System.out.println("Invalid date format. Please use DD/MM/YYYY.");
+            return;
+        }
+        books.add(book);
+        System.out.println("The book has been added successfully.");
     }
     void DisplayBook(){
 
@@ -66,7 +66,11 @@ void Library(){
                 System.out.println("ISBN: " + book.ISBN);
                 System.out.println("Publication Date: " + book.pub_date);
                 System.out.println("Is Booked: " + book.isbooked);
-                System.out.println("Name: " + book.std.name);
+                if (book.std != null) {
+                    System.out.println("Student Name: " + book.std.name);
+                } else {
+                    System.out.println("Student Name: Not booked yet");
+                }
                 //System.out.println();
             }
         }
@@ -93,18 +97,24 @@ void Library(){
             }
         }
     }
-    void DeleteBook(){
-        Books bk=new Books();
-        System.out.println("Enter the book title will delete: ");
-        String Title=new Scanner(System.in).nextLine();
-        for(int i=0;i<books.size();i++){
-            if(books.get(i).title.equals(Title)){
-                books.remove(i);
-                System.out.println("The book has been deleted successfully.");
+    void DeleteBook() {
+        System.out.println("Enter the book title to delete: ");
+        String title = new Scanner(System.in).nextLine();
+        for (int i = 0; i < books.size(); i++) {
+            Books book = books.get(i);
+            if (book.title.equals(title)) {
+                if (!book.isbooked) {
+                    books.remove(i);
+                    System.out.println("The book has been deleted successfully.");
+                } else {
+                    System.out.println("The book is currently booked and cannot be deleted.");
+                }
+                return;
             }
         }
-
+        System.out.println("Book not found.");
     }
+
     void UpdateBook(){
         if (books.isEmpty()) {
             System.out.println("The library is empty. No books to display.");
@@ -151,9 +161,11 @@ void Library(){
                 System.out.println("Name : "+std1.name);
                 System.out.println("Address : "+std1.adress);
                 System.out.println("ID : "+std1.id);
-                System.out.println("Book : "+std1.book.get(0).title);
-
-
+                if (!std1.book.isEmpty()) {
+                    System.out.println("Book: " + std1.book.get(0).title);
+                } else {
+                    System.out.println("No books reserved.");
+                }
             }
         }
 
@@ -177,25 +189,25 @@ void Library(){
 
         return null;
     }
-    void DeleteStudent(){
-    Students std=new Students();
-        System.out.println("Enter the name of the student to search: ");
-        String nameDeleted=new Scanner(System.in).nextLine();
-        for(int i=0;i<students.size();i++){
-            if(students.get(i).name.equals(nameDeleted)){
-                students.remove(i);
-                System.out.println("The Student has been deleted successfully.");
+    void DeleteStudent() {
+        System.out.println("Enter the name of the student to delete: ");
+        String nameDeleted = new Scanner(System.in).nextLine();
+        for (int i = 0; i < students.size(); i++) {
+            Students student = students.get(i);
+            if (student.name.equals(nameDeleted)) {
+                if (student.book.isEmpty()) {
+                    students.remove(i);
+                    System.out.println("The student has been deleted successfully.");
+                    return; // Exiting the method after deleting the student
+                } else {
+                    System.out.println("The student cannot be deleted because they have reserved books.");
+                    return; // Exiting the method if the student has reserved books
+                }
             }
         }
-//        for (Students std1: students){
-//            if (std1.name.equals(nameDeleted)){
-//                students.remove(std1);
-//                System.out.println("The student has been deleted successfully.");
-//
-//            }
-//        }
-
+        System.out.println("Student not found.");
     }
+
     void UpdateStudent(){
         if (students.isEmpty()) {
             System.out.println("The list of student is empty. No student to display..");
@@ -217,8 +229,6 @@ void Library(){
     }
 
     void  ReserveBook(){
-//        Books bk = new Books();
-//        Students st = new Students();
         System.out.println("Enter your name: ");
         String Name =new Scanner(System.in).nextLine();
         for(Students std1: students){
@@ -227,9 +237,10 @@ void Library(){
                 String title =new Scanner(System.in).nextLine();
                 for (Books bk1 : books){
                     if(bk1.title.equals(title)){
-                        if(bk1.isbooked==false) {
+                        if(!bk1.isbooked) {
                             bk1.isbooked = true;
-                            System.out.println("THE BOOK " + title + " IS RESERVED BY " + Name);
+                            bk1.reservationDate = LocalDate.now();
+                            System.out.println("The book " + title + " is reserved by " + Name +" on " + bk1.reservationDate);
                             std1.book.add(bk1);
                             Students std = SearchStudent(std1.name);
                             if (std!=null){
@@ -244,61 +255,69 @@ void Library(){
                 }
             }
         }
-//            Scanner scanner = new Scanner(System.in);
-//            System.out.println("Enter your name: ");
-//            String studentName = scanner.nextLine();
-//
-//
-//            Students student = null;
-//            for (Students std : students) {
-//                if (std.name.equalsIgnoreCase(studentName)) {
-//                    student = std;
-//                    break;
-//                }
-//            }
-//
-//            if (student == null) {
-//                System.out.println("Student not found.");
-//                return;
-//            }
-//
-//            System.out.println("Enter the title of the book you want to reserve: ");
-//            String bookTitle = scanner.nextLine();
-//
-//            Books bookToReserve = null;
-//            for (Books book : books) {
-//                if (book.title.equalsIgnoreCase(bookTitle)) {
-//                    bookToReserve = book;
-//                    break;
-//                }
-//            }
-//
-//            if (bookToReserve == null) {
-//                System.out.println("Book not found.");
-//                return;
-//            }
-//
-//            // Check if the book is already reserved
-//            if (bookToReserve.isbooked) {
-//                System.out.println("The book is already reserved.");
-//            } else {
-//                // Reserve the book
-//                bookToReserve.isbooked=true;
-//                System.out.println("The book '" + bookToReserve.title + "' is reserved by " + student.name);
-//            }
-//
+
     }
     void FilterBookReserved(){
 //        Books bk = new Books();
+        int countBookReserved =0;
         for (Books bk: books) {
+
             if (bk.isbooked) {
+                countBookReserved++;
+                System.out.println("Number of books reserve is "+countBookReserved);
+                System.out.println("List of Books reserve");
                 System.out.println("Title: " + bk.title);
                 System.out.println("Author: " + bk.author);
                 System.out.println("ISBN: " + bk.ISBN);
                 System.out.println("Publication Date: " + bk.pub_date);
+                System.out.println("Reservetion Date: "+bk.reservationDate);
                 System.out.println("Is Booked: " + bk.isbooked);
             }
+//            else {
+//                System.out.println("List of Books No reserve");
+//                System.out.println("Title: " + bk.title);
+//                System.out.println("Author: " + bk.author);
+//                System.out.println("ISBN: " + bk.ISBN);
+//                System.out.println("Publication Date: " + bk.pub_date);
+////                System.out.println("Reservetion Date: "+bk.reservationDate);
+//                System.out.println("Is Booked: " + bk.isbooked);
+//            }
         }
 
+    }
+    void CancelReservation() {
+        System.out.println("Enter your name: ");
+        String name = new Scanner(System.in).nextLine();
+        for (Students std1 : students) {
+            if (std1.name.equals(name)) {
+                System.out.println("Enter the title of the book you want to cancel the reservation: ");
+                String title = new Scanner(System.in).nextLine();
+                for (Books bk1 : std1.book) {
+                    if (bk1.title.equals(title)) {
+                        if (bk1.isbooked) {
+                            LocalDate currentDate = LocalDate.now();
+                            if (currentDate.isAfter(bk1.reservationDate)) {
+                                System.out.println("The reservation for the book " + title +
+                                        " is canceled by " + name + " with delay!");
+                            } else {
+                                System.out.println("The reservation for the book " + title +
+                                        " is canceled by " + name);
+                            }
+                            bk1.isbooked = false;
+                            std1.book.remove(bk1);
+                            bk1.std = null;
+                            bk1.reservationDate = null;
+                            return;
+                        } else {
+                            System.out.println("The book is not reserved by you!");
+                            return;
+                        }
+                    }
+                }
+                System.out.println("You have not reserved the book with title " + title);
+                return;
+            }
+        }
+        System.out.println("Student with name " + name + " not found.");
     }
 }
